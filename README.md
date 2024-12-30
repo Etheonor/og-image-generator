@@ -1,5 +1,7 @@
 # Dynamic OG Image Generator with Cloudflare Workers
 
+POUR LE FUTUR -> bun run deploy pour deployer sur cloudflare
+
 A high-performance Open Graph image generator built with Cloudflare Workers, Hono, and Vercel OG. Generate beautiful social media cards dynamically with support for multiple font loading strategies and visual styles.
 
 ## Features
