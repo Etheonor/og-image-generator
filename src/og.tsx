@@ -57,11 +57,8 @@ export default app.get('/', async (c) => {
 
 		// ********************** Local Fonts ********************** //
 		const font = await getLocalFonts(c, [
-			{ path: 'Poppins-Regular.ttf', weight: 400 },
-			{ path: 'Poppins-Medium.ttf', weight: 500 },
-			{ path: 'Poppins-SemiBold.ttf', weight: 600 },
-			{ path: 'Poppins-Bold.ttf', weight: 700 },
-			{ path: 'Poppins-Black.ttf', weight: 900 },
+			{ path: 'SourceSans3-Regular.ttf', weight: 400 },
+			{ path: 'Outfit-Black.ttf', weight: 900 },
 		]);
 
 		// END Font Configuration
@@ -69,8 +66,10 @@ export default app.get('/', async (c) => {
 		// console.log(font);
 		// -----------------------------------------
 
-		function Style1() {
+		async function Style1() {
 			//http://127.0.0.1:8787/og?mainText=Building%20the%20Future%20of%20Web%20Development&description=Explore%20modern%20frameworks,%20serverless%20architecture,%20and%20cutting-edge%20tools%20that%20power%20the%20next%20generationof%20web%20applications&footerText=%F0%9F%9A%80%20Powered%20by%20Next.js%20%E2%80%A2%20TypeScript%20%E2%80%A2%20Tailwind%20CSS&style=1
+			const logoImage = await loadImage(c, '/images/logo.png');
+
 			return (
 				<div
 					style={{
@@ -78,8 +77,8 @@ export default app.get('/', async (c) => {
 						height: '100%',
 						display: 'flex',
 						flexDirection: 'column',
-						padding: '48px',
-						backgroundImage: 'linear-gradient(135deg, rgb(30, 58, 138) 0%, rgb(67, 56, 202) 100%)',
+						padding: '18px',
+						backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(222,233,254,1) 100%)',
 					}}
 				>
 					<div
@@ -87,24 +86,35 @@ export default app.get('/', async (c) => {
 							flex: 1,
 							display: 'flex',
 							flexDirection: 'column',
-							padding: '48px',
-							backgroundColor: 'rgba(255, 255, 255, 0.1)',
-							borderRadius: '24px',
-							border: '1px solid rgba(255, 255, 255, 0.2)',
+							padding: '28px',
+							paddingTop: '104px',
 						}}
 					>
 						<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-							<div tw="text-6xl font-black text-white text-center">{mainText}</div>
+							<div
+								className="title"
+								tw="text-7xl text-indigo-900 font-black title text-center"
+							>
+								{mainText}
+							</div>
+							<hr
+								tw="
+						
+						border-t-2 border-red-700 my-2 w-1/2 mx-auto
+						"
+							/>
 							<div
 								style={{ marginTop: '24px' }}
-								tw="text-2xl text-blue-100 text-center max-w-4xl"
+								tw="text-3xl text-slate-700 text-center max-w-4xl"
 							>
 								{description}
 							</div>
 						</div>
+
 						<div
 							style={{
 								marginTop: 'auto',
+								marginLeft: 'auto',
 								display: 'flex',
 								justifyContent: 'center',
 								alignItems: 'center',
@@ -113,7 +123,12 @@ export default app.get('/', async (c) => {
 							}}
 							tw="text-xl text-blue-200"
 						>
-							{footerText}
+							{logoImage && (
+								<img
+									src={logoImage}
+									alt=""
+								/>
+							)}
 						</div>
 					</div>
 				</div>
